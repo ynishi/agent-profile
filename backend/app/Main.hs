@@ -1,8 +1,7 @@
 module Main where
 
-import MyLib qualified (someFunc)
+import AgentProfile.Domain.Agent.Types
 
 main :: IO ()
 main = do
     putStrLn "Hello, Haskell!"
-    MyLib.someFunc
