@@ -1,37 +1,42 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module AgentProfile.Domain.Flow.Types where
 
 import Data.Aeson
-import Data.Map.Strict qualified as M
+import Data.Aeson.TH
 import Data.Text (Text)
 import GHC.Generics
 
-data Flow = Flow
-    { flowId :: String
-    , name :: Text
-    , desc :: Text
-    , steps :: [Step]
-    , attributes :: M.Map Text Value
-    , errorPolicy :: Text
-    }
-    deriving (Eq, Show, Generic)
+import AgentProfile.Domain.Types (Attributes, toSnakeCase)
+
+type StepId = String
 
 data Step = Step
-    { stepId :: String
-    , name :: Text
-    , desc :: Text
+    { stepId :: StepId
+    , name :: Maybe Text
+    , description :: Maybe Text
     , content :: Text
-    , condition :: Text
+    , condition :: Maybe Text
     , functionIds :: [String]
-    , attributes :: M.Map Text Value
-    , errorStepId :: String
+    , attributes :: Attributes
+    , errorStepId :: Maybe String
     }
     deriving (Eq, Show, Generic)
 
-instance FromJSON Flow
-instance ToJSON Flow
+deriveJSON defaultOptions{fieldLabelModifier = toSnakeCase} ''Step
 
-instance FromJSON Step
-instance ToJSON Step
+type FlowId = String
+
+data Flow = Flow
+    { flowId :: FlowId
+    , name :: Text
+    , description :: Maybe Text
+    , stepIds :: [StepId]
+    , attributes :: Attributes
+    , errorPolicy :: Maybe Text
+    }
+    deriving (Eq, Show, Generic)
+
+deriveJSON defaultOptions{fieldLabelModifier = toSnakeCase} ''Flow

@@ -65,6 +65,7 @@ library
     AgentProfile.Domain.Flow.Types
     AgentProfile.Domain.Function.Types
     AgentProfile.Domain.Profile.Types
+    AgentProfile.Domain.Types
 
   -- Modules included in this library but not exported.
   -- other-modules:
@@ -77,6 +78,7 @@ library
     , aeson
     , base            ^>=4.17.2.1
     , bytestring
+    , casing
     , containers
     , servant
     , servant-server

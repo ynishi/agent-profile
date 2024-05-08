@@ -1,22 +1,27 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module AgentProfile.Domain.Function.Types where
 
 import Data.Aeson
-import Data.Map.Strict qualified as M
+import Data.Aeson.TH
 import Data.Text (Text)
 import GHC.Generics
 
+import AgentProfile.Domain.Types (Attributes, toSnakeCase)
+
+type FunctionId = String
+
 data Function = Function
-    { name :: Text
-    , desc :: Text
+    { functionId :: String
+    , name :: Text
+    , description :: Maybe Text
     , content :: Text
-    , inputData :: Text
-    , outputData :: Text
-    , attributes :: M.Map Text Value
+    , inputData :: Maybe Text
+    , outputData :: Maybe Text
+    , attributes :: Attributes
     }
     deriving (Eq, Show, Generic)
 
-instance FromJSON Function
-instance ToJSON Function
+deriveJSON defaultOptions{fieldLabelModifier = toSnakeCase} ''Function
