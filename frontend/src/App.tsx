@@ -23,18 +23,21 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
+import { AgentCreate, AgentEdit, AgentList, AgentShow } from "./pages/agents";
 import {
-  BlogPostCreate,
-  BlogPostEdit,
-  BlogPostList,
-  BlogPostShow,
-} from "./pages/blog-posts";
+  ProfileCreate,
+  ProfileEdit,
+  ProfileList,
+  ProfileShow,
+} from "./pages/profiles";
 import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
+  FunctionCreate,
+  FunctionEdit,
+  FunctionList,
+  FunctionShow,
+} from "./pages/functions";
+import { StepCreate, StepEdit, StepList, StepShow } from "./pages/steps";
+import { FlowCreate, FlowEdit, FlowList, FlowShow } from "./pages/flows";
 import { supabaseClient } from "./utility";
 
 function App() {
@@ -53,22 +56,57 @@ function App() {
                 notificationProvider={useNotificationProvider}
                 resources={[
                   {
-                    name: "blog_posts",
-                    list: "/blog-posts",
-                    create: "/blog-posts/create",
-                    edit: "/blog-posts/edit/:id",
-                    show: "/blog-posts/show/:id",
+                    name: "agents",
+                    list: "/agents",
+                    create: "/agents/create",
+                    edit: "/agents/edit/:id",
+                    show: "/agents/show/:id",
                     meta: {
+                      idColumnName: "agent_id",
                       canDelete: true,
                     },
                   },
                   {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
+                    name: "profiles",
+                    list: "/profiles",
+                    create: "/profiles/create",
+                    edit: "/profiles/edit/:id",
+                    show: "/profiles/show/:id",
                     meta: {
+                      idColumnName: "profile_id",
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "functions",
+                    list: "/functions",
+                    create: "/functions/create",
+                    edit: "/functions/edit/:id",
+                    show: "/functions/show/:id",
+                    meta: {
+                      idColumnName: "function_id",
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "flows",
+                    list: "/flows",
+                    create: "/flows/create",
+                    edit: "/flows/edit/:id",
+                    show: "/flows/show/:id",
+                    meta: {
+                      idColumnName: "flow_id",
+                      canDelete: true,
+                    },
+                  },
+                  {
+                    name: "steps",
+                    list: "/steps",
+                    create: "/steps/create",
+                    edit: "/steps/edit/:id",
+                    show: "/steps/show/:id",
+                    meta: {
+                      idColumnName: "step_id",
                       canDelete: true,
                     },
                   },
@@ -98,19 +136,37 @@ function App() {
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="blog_posts" />}
+                      element={<NavigateToResource resource="agents" />}
                     />
-                    <Route path="/blog-posts">
-                      <Route index element={<BlogPostList />} />
-                      <Route path="create" element={<BlogPostCreate />} />
-                      <Route path="edit/:id" element={<BlogPostEdit />} />
-                      <Route path="show/:id" element={<BlogPostShow />} />
+                    <Route path="/agents">
+                      <Route index element={<AgentList />} />
+                      <Route path="create" element={<AgentCreate />} />
+                      <Route path="edit/:id" element={<AgentEdit />} />
+                      <Route path="show/:id" element={<AgentShow />} />
                     </Route>
-                    <Route path="/categories">
-                      <Route index element={<CategoryList />} />
-                      <Route path="create" element={<CategoryCreate />} />
-                      <Route path="edit/:id" element={<CategoryEdit />} />
-                      <Route path="show/:id" element={<CategoryShow />} />
+                    <Route path="/profiles">
+                      <Route index element={<ProfileList />} />
+                      <Route path="create" element={<ProfileCreate />} />
+                      <Route path="edit/:id" element={<ProfileEdit />} />
+                      <Route path="show/:id" element={<ProfileShow />} />
+                    </Route>
+                    <Route path="/flows">
+                      <Route index element={<FlowList />} />
+                      <Route path="create" element={<FlowCreate />} />
+                      <Route path="edit/:id" element={<FlowEdit />} />
+                      <Route path="show/:id" element={<FlowShow />} />
+                    </Route>
+                    <Route path="/steps">
+                      <Route index element={<StepList />} />
+                      <Route path="create" element={<StepCreate />} />
+                      <Route path="edit/:id" element={<StepEdit />} />
+                      <Route path="show/:id" element={<StepShow />} />
+                    </Route>
+                    <Route path="/functions">
+                      <Route index element={<FunctionList />} />
+                      <Route path="create" element={<FunctionCreate />} />
+                      <Route path="edit/:id" element={<FunctionEdit />} />
+                      <Route path="show/:id" element={<FunctionShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
