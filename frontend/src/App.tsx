@@ -150,11 +150,11 @@ function App() {
                       <Route path="edit/:id" element={<ProfileEdit />} />
                       <Route path="show/:id" element={<ProfileShow />} />
                     </Route>
-                    <Route path="/functions">
-                      <Route index element={<FunctionList />} />
-                      <Route path="create" element={<FunctionCreate />} />
-                      <Route path="edit/:id" element={<FunctionEdit />} />
-                      <Route path="show/:id" element={<FunctionShow />} />
+                    <Route path="/flows">
+                      <Route index element={<FlowList />} />
+                      <Route path="create" element={<FlowCreate />} />
+                      <Route path="edit/:id" element={<FlowEdit />} />
+                      <Route path="show/:id" element={<FlowShow />} />
                     </Route>
                     <Route path="/steps">
                       <Route index element={<StepList />} />
@@ -162,11 +162,11 @@ function App() {
                       <Route path="edit/:id" element={<StepEdit />} />
                       <Route path="show/:id" element={<StepShow />} />
                     </Route>
-                    <Route path="/flows">
-                      <Route index element={<FlowList />} />
-                      <Route path="create" element={<FlowCreate />} />
-                      <Route path="edit/:id" element={<FlowEdit />} />
-                      <Route path="show/:id" element={<FlowShow />} />
+                    <Route path="/functions">
+                      <Route index element={<FunctionList />} />
+                      <Route path="create" element={<FunctionCreate />} />
+                      <Route path="edit/:id" element={<FunctionEdit />} />
+                      <Route path="show/:id" element={<FunctionShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
