@@ -6,7 +6,6 @@ import { Attributes } from "../../components/view/attributes";
 export const FunctionEdit = () => {
   const { formProps, saveButtonProps, onFinish } = useForm({});
   const handleOnFinish = (values: any) => {
-    console.log("Success:", values);
     onFinish(values2Request(values));
   };
   return (

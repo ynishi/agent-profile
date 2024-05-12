@@ -17,7 +17,6 @@ export const FlowCreate = () => {
   });
 
   const onFinishHandler = (values: any) => {
-    console.log("Success:", values);
     onFinish(values2Request(values));
   };
 
