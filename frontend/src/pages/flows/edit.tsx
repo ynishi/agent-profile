@@ -25,7 +25,6 @@ export const FlowEdit = () => {
   });
 
   const handleOnFinish = (values: any) => {
-    console.log("Success:", values);
     onFinish(values2Request(values));
   };
 

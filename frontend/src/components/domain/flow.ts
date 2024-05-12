@@ -46,7 +46,6 @@ export const result2Step = (value: any): IStep => {
   if (!value) {
     return {} as IStep;
   }
-  console.log("value", value);
   return {
     stepId: value["step_id"],
     name: value["name"],

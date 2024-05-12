@@ -24,7 +24,6 @@ export const AgentShow = () => {
   });
 
   const optionMap = new Map(options?.map((x) => [x?.value, x?.label]));
-  console.log(optionMap);
 
   const record = data?.data;
   const agent = result2Agent(record);
